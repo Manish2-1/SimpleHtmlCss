@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            padding-top: 60px;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /* Make sure elements are spaced properly */
+            background-color: #5C2A21;
+            padding: 0 20px;
+            height: 60px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-sizing: border-box;
+            /* Ensure padding doesn't affect element widths */
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            margin-right: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            position: relative;
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+        }
+
+        .login-button {
+            background-color: #E39A62;
+            color: black;
+            border: none;
+            padding: 8px 16px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .login-button:hover {
+            background-color: #d48450;
+        }
+
+        /* Dropdown styling */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #5C2A21;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            grid-template-columns: repeat(2, auto);
+            gap: 80px;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: grid;
+        }
+
+        .dropdown-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #d48450;
+            border-radius: 4px;
+        }
+
+        .drop-arrow {
+            font-size: 10px;
+            margin-left: 5px;
+        }
+
+
+
+        /* 2 */
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: url("assets/uploads/Serene\ Coffee\ Shop\ Scene.jpeg") no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .left-aligned {
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            position: absolute;
+            text-align: left;
+        }
+
+        .content {
+            position: absolute;
+            text-align: left;
+            color: white;
+            max-width: 600px;
+        }
+
+        .content h4 {
+            font-size: 4rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .content button {
+            font-size: 1rem;
+            padding: 10px 20px;
+            background-color: #f8e8d4;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .content button:hover {
+            background-color: #e6d3bf;
+        }
+
+        /* 3 */
+        /* body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fff;
+            color: #333;
+        } */
+
+        /* Featured Products Section */
+        .featured-products {
+            padding: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            gap: 20px;
+        }
+
+        .left-text {
+            flex: 1;
+            max-width: 250px;
+        }
+
+        .left-text h1 {
+            font-size: 2.5rem;
+            color: #6b3e1e;
+            /* Dark brown */
+        }
+
+        .right-text {
+            flex: 3;
+        }
+
+        .right-text p {
+            font-size: 1rem;
+            color: #000000;
+            line-height: 1.8;
+        }
+
+        .products {
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .product {
+            flex: 1;
+            aspect-ratio: 1;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .product img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .product:hover img {
+            transform: scale(1.1);
+            filter: brightness(0.9);
+        }
+
+        .containers {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .image-sections {
+            width: 100%;
+            height: 350px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .coffee-images {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .text-sectio {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0;
+            padding: 20px;
+
+        }
+
+        .datee,
+        .titlee,
+        .descriptio {
+            margin: 0 0 15px 0;
+        }
+
+        .datee {
+            font-size: 12px;
+            color: #8a8a8a;
+        }
+
+        .titlee {
+            font-size: 48px;
+            color: #5b2e19;
+        }
+
+        .descriptio {
+            font-size: 16px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .explore-buttonn {
+            padding: 8px 16px;
+            background-color: #5b2e19;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .explore-buttonn:hover {
+            background-color: #7c3e27;
+        }
+
+        .testimonial-section {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .testimonial-title {
+            font-size: 75px;
+            color: #5b2e19;
+            margin-bottom: 150px;
+        }
+
+        /* Testimonial Container */
+        .testimonial-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Individual Testimonial Cards */
+        .testimonial-card {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+
+        .testimonial-rating {
+            font-size: 18px;
+            color: #f4c150;
+            /* Star color */
+            margin-left: 10px;
+        }
+
+        .testimonial-text {
+            font-size: 14px;
+            color: #444;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .testimonial-name {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        .testimonial-role {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 2.5rem;
+            color: #6e3b3b;
+        }
+
+        .coffee-section {
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .coffee-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .coffee-description {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .coffee-cup {
+            width: 450px;
+            height: 500px;
+            display: block;
+            margin: 0 20px;
+        }
+
+        .coffee-card {
+            padding: 10px;
+            margin-left: auto;
+        }
+
+        .coffee-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #7a3d3d;
+        }
+
+        .coffee-card p {
+            font-size: 1rem;
+            color: #4a2c2a;
+        }
+
+        @media (max-width: 768px) {
+            .coffee-container {
+                flex-direction: column;
+            }
+
+            .coffee-cup {
+                width: 120px;
+                height: 150px;
+            }
+        }
+
+        .pricing-section {
+            text-align: center;
+        }
+
+        .pricing-section h1 {
+            font-size: 2rem;
+            color: #5c2c06;
+            margin-bottom: 20px;
+        }
+
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background-color: #1a001a;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            color: #fff;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 15px;
+            text-align: left;
+        }
+
+        .card-content h3 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .card-content p {
+            font-size: 0.9rem;
+            color: #b3b3b3;
+            margin-bottom: 10px;
+        }
+
+        .card-content .price {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card .rating {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #5c2c06;
+            color: #fff;
+            font-size: 0.8rem;
+            padding: 5px 10px;
+            border-radius: 15px;
+        }
+
+        .card .add-button {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: #a35f00;
+            color: #fff;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .card .add-button:hover {
+            background-color: #8a4e00;
+        }
+
+        h3 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 2.5rem;
+            color: #6e3b3b;
+            margin-bottom: 90px;
+        }
+
+        .virtual-exhibition {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .virtual-exhibition .image-sections {
+            width: 100%;
+            height: 350px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .virtual-exhibition .image-sections img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .virtual-exhibition form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .virtual-exhibition form label {
+            font-size: 16px;
+            color: #444;
+            margin-bottom: 5px;
+        }
+
+        .virtual-exhibition form input,
+        .virtual-exhibition form textarea,
+        .virtual-exhibition form button {
+            font-size: 14px;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .virtual-exhibition form input:focus,
+        .virtual-exhibition form textarea:focus {
+            border-color: #5b2e19;
+            outline: none;
+        }
+
+        .virtual-exhibition form button {
+            background-color: #5b2e19;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .virtual-exhibition form button:hover {
+            background-color: #7c3e27;
+        }
+
+        .table-container {
+            position: relative;
+            max-width: 900px;
+            margin: 20px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .student-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+
+
+        .student-table thead {
+            background-color: #f9f9f9;
+        }
+
+        .student-table th,
+        .student-table td {
+            padding: 16px;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .student-table th {
+            font-size: 14px;
+            color: #888;
+            font-weight: normal;
+        }
+
+        .student-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .student-info img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+        }
+
+        .student-info strong {
+            font-size: 14px;
+            color: #333;
+        }
+
+        .student-info p {
+            margin: 0;
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .status.enrolled {
+            background-color: #dfffe0;
+            color: #22a622;
+        }
+
+        .status.pending {
+            background-color: #fff7d9;
+            color: #e6a800;
+        }
+
+        .progress-icon {
+            color: #22a622;
+            margin-left: 5px;
+        }
+
+        .rating {
+            color: #ffa800;
+        }
+
+        .footer {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 40px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-column {
+            flex: 1 1 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-column h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #d1d1d1;
+            text-align: center;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        .footer-column ul li {
+            font-size: 14px;
+            line-height: 2;
+            color: #a8a8a8;
+        }
+
+        .footer-column ul li span.badge {
+            background-color: #2979ff;
+            color: #fff;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 12px;
+            margin-left: 5px;
+        }
+
+        .footer-column ul li:hover {
+            color: #fff;
+        }
+
+        .footer-column ul li a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .footer-social {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            text-align: left;
+        }
+
+        .footer-social ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-social ul li a {
+            text-decoration: none;
+            color: #a8a8a8;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+
+        .footer-social ul li a:hover {
+            color: #fff;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Navbar</title>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">COFE</div>
+        <ul class="nav-links">
+            <li><a href="#">HOME</a></li>
+            <li class="dropdown">
+                <a href="#">PRODUCT<span class="drop-arrow">&#9660;</span></a>
+                <div class="dropdown-menu">
+                    <a href="#">Espresso</a>
+                    <a href="#">Drip Coffee</a>
+                    <a href="#">French Press</a>
+                    <a href="#">Cold Brew</a>
+                    <a href="#">Aeropress</a>
+                    <a href="#">Americano</a>
+                </div>
+            </li>
+            <li><a href="#">ABOUT US</a></li>
+            <li><a href="#">CONTACT US</a></li>
+            <li><a href="#">BLOG</a></li>
+        </ul>
+        <button class="login-button">LOGIN</button>
+    </nav>
+
+
+    <div class="container">
+        <div class=" content left-aligned">
+            <h4>Get the Experience<br>of Making your<br>own coffee</h4>
+            <button>ENQUIRY</button>
+        </div>
+    </div>
+
+    <section class="featured-products">
+        <div class="header">
+            <div class="left-text">
+                <h1>Featured<br>Products</h1>
+            </div>
+            <div class="right-text">
+                <p>We Have Been Dedicated To Perfecting The Art Of Coffee,<br>
+                    Sourcing The Finest Beans,<br>
+                    And Crafting Exceptional Blends</p>
+            </div>
+        </div>
+        <div class="products">
+            <div class="product">
+                <img src="assets/uploads/third section.jpg" alt="Coffee Product 1">
+            </div>
+            <div class="product">
+                <img src="assets/uploads/third sectionn.jpg" alt="Coffee Product 2">
+            </div>
+            <div class="product">
+                <img src="assets/uploads/thirdd section.jpg" alt="Coffee Product 3">
+            </div>
+        </div>
+    </section>
+
+    <!-- 4 -->
+
+    <div class=" containers ">
+        <div class="image-sections">
+            <img src="assets/uploads/Rustic Coffee Break Ambiance.jpeg" alt="Americano Coffee" class="coffee-images">
+        </div>
+        <div class="text-sectio">
+            <p class="datee">on this day 2025, January 27</p>
+            <h1 class="titlee">Americano</h1>
+            <p class="descriptio">
+                An Americano consists of espresso diluted with hot water, giving it a similar strength to drip coffee
+                but retaining espresso's rich and bold taste.
+            </p>
+            <button class="explore-buttonn">Explore more</button>
+        </div>
+    </div>
+
+    <!-- 5 -->
+    <section class="testimonial-section">
+        <h1 class="testimonial-title">TESTOMONIAL</h1>
+        <div class="testimonial-container">
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="assets/uploads/IMG-5a0d55d1cd1295ed38fdc48508e5ef39-V.jpg" alt="Kyle Roberts"
+                        class="testimonial-avatar">
+                    <div class="testimonial-rating">★★★★★</div>
+                </div>
+                <p class="testimonial-text">
+                    Website design did exactly what you said it does. Just what I was looking for. Nice work on your
+                    website design.
+                </p>
+                <h4 class="testimonial-name">Kyle Roberts DVM</h4>
+                <p class="testimonial-role">Customer Web Consultant</p>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="assets/uploads/IMG-5a0d55d1cd1295ed38fdc48508e5ef39-V.jpg" alt="Sophia Anderson"
+                        class="testimonial-avatar">
+                    <div class="testimonial-rating">★★★★★</div>
+                </div>
+                <p class="testimonial-text">
+                    I will let my mum know about this, she could really make use of software! Very easy to use.
+                    Since I invested in software I made over 100,000 dollars profits. I just can't get enough of
+                    software. I want to get a T-Shirt with software on it so l can show it off to everyone.
+                </p>
+                <h4 class="testimonial-name">Sophia Anderson</h4>
+                <p class="testimonial-role">Internal Implementation Officer</p>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="assets/uploads/IMG-5a0d55d1cd1295ed38fdc48508e5ef39-V.jpg" alt="Stephen Brekke"
+                        class="testimonial-avatar">
+                    <div class="testimonial-rating">★★★★★</div>
+                </div>
+                <p class="testimonial-text">
+                    If you want real marketing that works and effective implementation - mobile app's got you
+                    covered.
+                </p>
+                <h4 class="testimonial-name">Stephen Brekke</h4>
+                <p class="testimonial-role">Legacy Integration Producer</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="coffee-section">
+        <h1>SPECIALTY COFFEES</h1>
+        <div class="coffee-container">
+
+            <div class="coffee-description">
+                <div class="coffee-card">
+                    <h2>Turkish Coffee</h2>
+                    <p>Finely ground coffee simmered in a pot, often sweetened and served unfiltered in a small cup.</p>
+                </div>
+                <div class="coffee-card">
+                    <h2>Cortado</h2>
+                    <p>Espresso "cut" with a small amount of warm milk to reduce acidity.</p>
+                </div>
+            </div>
+
+
+            <div class="coffee-cup">
+                <img src="assets/uploads/coffee.png" alt="Coffee Cup">
+            </div>
+
+
+            <div class="coffee-description">
+                <div class="coffee-card">
+                    <h2>Vietnamese Coffee</h2>
+                    <p>Strong coffee brewed through a drip filter, served over sweetened condensed milk (hot or iced).
+                    </p>
+                </div>
+                <div class="coffee-card">
+                    <h2>Affogato</h2>
+                    <p>A scoop of ice cream or gelato topped with a shot of espresso.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="pricing-section">
+        <h1>PRICING</h1>
+        <div class="cards-container">
+            <div class="card">
+                <img src="assets/uploads/Ceramic Cup of Frothy Coffee.jpeg" alt="Milk with Chocolate">
+                <div class="rating">★ 5.4</div>
+                <div class="card-content">
+                    <h3>MILK</h3>
+                    <p>With Chocolate</p>
+                    <div class="price">$2.95</div>
+                </div>
+                <div class="add-button">+</div>
+            </div>
+            <div class="card">
+                <img src="assets/uploads/Ceramic Cup of Frothy Coffee.jpeg" alt="Milk with Chocolate">
+                <div class="rating">★ 5.4</div>
+                <div class="card-content">
+                    <h3>MILK</h3>
+                    <p>With Chocolate</p>
+                    <div class="price">$2.95</div>
+                </div>
+                <div class="add-button">+</div>
+            </div>
+            <div class="card">
+                <img src="assets/uploads/Ceramic Cup of Frothy Coffee.jpeg" alt="Milk with Chocolate">
+                <div class="rating">★ 5.4</div>
+                <div class="card-content">
+                    <h3>MILK</h3>
+                    <p>With Chocolate</p>
+                    <div class="price">$2.95</div>
+                </div>
+                <div class="add-button">+</div>
+            </div>
+        </div>
+    </section>
+
+    <h3>Your Details</h3>
+    <div class="virtual-exhibition">
+        <div class="image-sections">
+            <img src="assets/uploads/Serene Morning with Coffee and Literature.jpeg" alt="Virtual Exhibition Image">
+        </div>
+        <form action="">
+            <h2>Get in Touch</h2>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="name">Gender:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="message">Password:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div class="table-container">
+        <table class="student-table">
+            <thead>
+                <tr>
+                    <th><input type="checkbox"></th>
+                    <th>Student</th>
+                    <th>Status</th>
+                    <th>Course</th>
+                    <th>Progress</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td class="student-info">
+                        <img src="assets/uploads/Café Ambiance with Female Patron.jpeg" alt="Guy Hawkins">
+                        <div>
+                            <strong>Guy Hawkins</strong>
+                            <p>I neglected to mention that...</p>
+                        </div>
+                    </td>
+                    <td><span class="status enrolled">Enrolled</span></td>
+                    <td>UI Masterclass</td>
+                    <td><strong>75</strong> <span class="progress-icon">↻</span></td>
+                    <td><span class="rating">⭐⭐⭐⭐⭐</span></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td class="student-info">
+                        <img src="assets/uploads/Ceramic Cup of Frothy Coffee.jpeg" alt="Devon Lane">
+                        <div>
+                            <strong>Devon Lane</strong>
+                            <p>I neglected to mention that...</p>
+                        </div>
+                    </td>
+                    <td><span class="status pending">Pending</span></td>
+                    <td>Backend Development</td>
+                    <td><strong>50</strong> <span class="progress-icon">↻</span></td>
+                    <td><span class="rating">⭐⭐⭐</span></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td class="student-info">
+                        <img src="assets/uploads/Cozy Digital Coffee Break.jpeg" alt="Darlene Robertson">
+                        <div>
+                            <strong>Darlene Robertson</strong>
+                            <p>I neglected to mention that...</p>
+                        </div>
+                    </td>
+                    <td><span class="status enrolled">Enrolled</span></td>
+                    <td>Frontend Development</td>
+                    <td><strong>25</strong> <span class="progress-icon">↻</span></td>
+                    <td><span class="rating">⭐⭐⭐</span></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td class="student-info">
+                        <img src="assets/uploads/Rustic Coffee Break Ambiance.jpeg" alt="Eleanor Pena">
+                        <div>
+                            <strong>Eleanor Pena</strong>
+                            <p>I neglected to mention that...</p>
+                        </div>
+                    </td>
+                    <td><span class="status enrolled">Enrolled</span></td>
+                    <td>Data Science</td>
+                    <td><strong>100</strong> <span class="progress-icon">↻</span></td>
+                    <td><span class="rating">⭐⭐⭐⭐⭐</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Product</h3>
+                <ul>
+                    <li>Changelog <span class="badge">New</span></li>
+                    <li>LinkedIn extension ↗</li>
+                    <li>Gmail extension ↗</li>
+                    <li>iOS app ↗</li>
+                    <li>Android app ↗</li>
+                    <li>Security</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Import from</h3>
+                <ul>
+                    <li>Salesforce</li>
+                    <li>Hubspot</li>
+                    <li>Pipedrive</li>
+                    <li>Zoho</li>
+                    <li>Excel</li>
+                    <li>CSV</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Company</h3>
+                <ul>
+                    <li>Customers <span class="badge">New</span></li>
+                    <li>Blog</li>
+                    <li>Careers</li>
+                    <li>About</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Attio for</h3>
+                <ul>
+                    <li>Startups</li>
+                    <li>Deal flow</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Resources</h3>
+                <ul>
+                    <li>Startup program</li>
+                    <li>Help center</li>
+                    <li>Guides & tutorials</li>
+                    <li>Automation templates</li>
+                    <li>Developers</li>
+                    <li>System status ↗</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Integrations</h3>
+                <ul>
+                    <li>Email & Calendar</li>
+                    <li>Census</li>
+                    <li>Segment</li>
+                    <li>June</li>
+                    <li>Slack</li>
+                    <li>Outreach</li>
+                    <li>Mixmax</li>
+                    <li>Mailchimp</li>
+                    <li>Typeform</li>
+                    <li>Pylon</li>
+                    <li>Zapier ↗</li>
+                    <li>Make ↗</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Only one section for social icons -->
+        <div class="footer-social">
+            <ul>
+                <li><a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a></li>
+                <li><a href="#" class="social-icon"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="#" class="social-icon"><i class="fab fa-twitter"></i></a></li>
+            </ul>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>
